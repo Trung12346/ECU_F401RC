@@ -1,7 +1,7 @@
 #include "stm32f401xc.h"
 #include <stdint.h>
 
-void core_clock_init()
+void core_clock_init(void)
 {
 	RCC->CR |= (uint32_t)RCC_CR_HSION;
 	for(;!(RCC->CR & RCC_CR_HSIRDY_Msk););

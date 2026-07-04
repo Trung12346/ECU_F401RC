@@ -134,11 +134,11 @@
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
             <Capability>1</Capability>
-            <DriverSelection>-1</DriverSelection>
+            <DriverSelection>4096</DriverSelection>
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3></Flash3>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -419,25 +419,82 @@
               <FileType>1</FileType>
               <FilePath>.\src\hardware\tim.c</FilePath>
             </File>
+            <File>
+              <FileName>average.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\cm4_algo\average.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
           <GroupName>inc</GroupName>
           <Files>
             <File>
-              <FileName>core_clock_init.h</FileName>
+              <FileName>pio.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\inc\core_clock_init.h</FilePath>
+              <FilePath>.\inc\pio.h</FilePath>
             </File>
             <File>
-              <FileName>pio_init.h</FileName>
+              <FileName>adc.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\inc\pio_init.h</FilePath>
+              <FilePath>.\inc\adc.h</FilePath>
+            </File>
+            <File>
+              <FileName>dma.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\inc\dma.h</FilePath>
+            </File>
+            <File>
+              <FileName>tim.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\inc\tim.h</FilePath>
+            </File>
+            <File>
+              <FileName>engine_cfg.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\inc\engine_cfg.h</FilePath>
+            </File>
+            <File>
+              <FileName>phys_const.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\inc\phys_const.h</FilePath>
+            </File>
+            <File>
+              <FileName>sys_cfg.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\inc\sys_cfg.h</FilePath>
+            </File>
+            <File>
+              <FileName>core.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\inc\core.h</FilePath>
+            </File>
+            <File>
+              <FileName>average.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\inc\average.h</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
           <GroupName>config</GroupName>
+          <Files>
+            <File>
+              <FileName>engine_cfg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\config\engine_cfg.c</FilePath>
+            </File>
+            <File>
+              <FileName>phys_const.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\config\phys_const.c</FilePath>
+            </File>
+            <File>
+              <FileName>sys_cfg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\config\sys_cfg.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>::CMSIS</GroupName>

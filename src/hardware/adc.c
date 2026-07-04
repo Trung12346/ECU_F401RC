@@ -1,8 +1,11 @@
 #include "stm32f401xc.h"
 
-void adc_init()
+void adc_init(void)
 {
 	RCC->APB2ENR |= (uint32_t)RCC_APB2ENR_ADC1EN;
+	
+	ADC1->CR1 &= ~(uint32_t)ADC_CR1_RES;
+	ADC1->CR1 |= (uint32_t)ADC_CR1_SCAN;
 	
 	ADC1->CR2 &= ~(uint32_t)
 	(
@@ -11,11 +14,13 @@ void adc_init()
 		ADC_CR2_EOCS |
 		ADC_CR2_DDS |
 		ADC_CR2_ALIGN |
-		ADC_CR2_JEXTEN
+		ADC_CR2_JEXTEN |
+		ADC_CR2_EXTEN
 	);
 	ADC1->CR2 |= (uint32_t)
 	(
 		ADC_CR2_DMA |
+		ADC_CR2_EXTEN_0 |
 		(0xAU << ADC_CR2_EXTSEL_Pos)
 	);
 	
@@ -31,7 +36,7 @@ void adc_init()
 	);
 	
 	ADC1->SQR1 &= ~(uint32_t)ADC_SQR1_L;
-	ADC1->SQR1 |= (uint32_t)0x7 << ADC_SQR1_L_Pos;
+	ADC1->SQR1 |= (uint32_t)0x6 << ADC_SQR1_L_Pos;
 	ADC1->SQR3 &= ~(uint32_t)
 	(
 		ADC_SQR3_SQ1 |
@@ -52,6 +57,9 @@ void adc_init()
 		0x6U << ADC_SQR3_SQ6_Pos 
 	);
 	ADC1->SQR2 |= (uint32_t)0x7U << ADC_SQR2_SQ7_Pos;
-	
+}
+
+void adc_en(void)
+{
 	ADC1->CR2 |= ADC_CR2_ADON;
 }
