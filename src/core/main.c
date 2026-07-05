@@ -22,6 +22,7 @@ uint16_t ft_id = 0;
 uint16_t st_id = 0;
 uint16_t ft_arr_size = 128;
 uint16_t st_arr_size = 16;
+uint32_t crank_tmstp = 0;
 	
 int main()
 {
@@ -29,10 +30,16 @@ int main()
 	
 	core_clock_init();
 	pio_init();
-	dma2_init((uintptr_t)adc_scan);
+	dma2_init((uintptr_t)adc_scan, (uintptr_t)&crank_tmstp);
 	adc_init();
 	tim_init();
-	avg_128(map_his);
+
+	dma2_en();
+	adc_en();
+	tim_en();
+	
+	NVIC_EnableIRQ(DMA2_Stream0_IRQn);
+	NVIC_SetPriority(DMA2_Stream0_IRQn, 14);
 	
 	for(;;);
 }

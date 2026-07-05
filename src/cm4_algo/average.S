@@ -3,7 +3,8 @@
 	
 .global avg_128
 .type avg_128, %function
-	
+
+//input must not exceed 12-bit
 avg_128:
 	STMDB     SP!, {R3-R12}
 	LDM       R0!, {R5-R12} //0 - 7

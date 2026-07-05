@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include "stm32f401xc.h"
 
-void dma2_init(uintptr_t mbuf);
+void dma2_init(uintptr_t adc_mbuf, uintptr_t tim_mbuf);
 
 void dma2_en(void);
 
