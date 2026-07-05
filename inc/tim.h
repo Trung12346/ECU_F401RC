@@ -11,6 +11,7 @@ void tim_en(void);
 static inline void tim10_set_arr(uint32_t arr)
 {
 	TIM10->ARR = arr;
+	TIM10->EGR = (uint32_t)TIM_EGR_UG;
 }
 
 #endif

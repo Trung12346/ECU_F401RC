@@ -49,8 +49,9 @@ void pio_init(void)
 		GPIO_MODER_MODE14_1 |
 		GPIO_MODER_MODE15_1
 	);
-	//digital input for irq
+	//alternate function for irq
 	GPIOA->MODER &= ~(uint32_t)GPIO_MODER_MODE11;
+	GPIOA->MODER |= (uint32_t)GPIO_MODER_MODE11_1;
 	//alternate function pushpull output
 	GPIOB->OTYPER &= ~(uint32_t)
 	(
