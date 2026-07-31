@@ -78,7 +78,9 @@ void tim_init(void)
 		0x6U << TIM_CCMR1_OC1M_Pos |
 		0x6U << TIM_CCMR1_OC2M_Pos |
 		TIM_CCMR1_OC1PE |
-		TIM_CCMR1_OC2PE
+		TIM_CCMR1_OC2PE |
+		TIM_CCMR1_OC1FE |
+		TIM_CCMR1_OC2FE
 	);
 	TIM4->CCMR1 |= (uint32_t)
 	(
@@ -112,7 +114,7 @@ void tim_init(void)
 	(
 		TIM_CCER_CC4E |
 		0x1U << TIM_CCER_CC4P_Pos
-	);
+	);                          //TIM3, TIM4, TIM10 drive physical utilies, cannot be turnt on before data arrives
 	
 	TIM2->CNT = (uint32_t)0x0U; //reset counter
 	TIM1->CNT = (uint32_t)0x0U;
@@ -121,18 +123,20 @@ void tim_init(void)
 	TIM5->CNT = (uint32_t)0x0U;
 	TIM10->CNT = (uint32_t)0x0U;
 	
-	TIM2->PSC = (uint32_t)0x0U; //presc of 1
-	TIM1->PSC = (uint32_t)0x3U;
-	TIM3->PSC = (uint32_t)0xA40FU;
-	TIM4->PSC = (uint32_t)0x53U;
-	TIM5->PSC = (uint32_t)0x53U;
-	TIM10->PSC = (uint32_t)0xA40FU;
+	TIM2->PSC = (uint32_t)(APB1_FREQ / TIM2_FREQ) - 0x1U;
+	TIM1->PSC = (uint32_t)(APB2_FREQ / TIM1_FREQ) - 0x1U;
+	TIM3->PSC = (uint32_t)(APB1_FREQ / TIM3_FREQ) - 0x1U;
+	TIM4->PSC = (uint32_t)(APB1_FREQ / TIM4_FREQ) - 0x1U;
+	TIM5->PSC = (uint32_t)(APB1_FREQ / TIM5_FREQ) - 0x1U;
+	TIM10->PSC = (uint32_t)(APB2_FREQ / TIM10_FREQ) - 0x1U;
 	
 	TIM2->ARR = (uint32_t)0xFFFFFFFFU;
-	TIM1->ARR = (uint32_t)0xFFFF;
+	TIM1->ARR = (uint32_t)0xFFFFU;
 	TIM3->ARR = (uint32_t)0x4U;
 	TIM4->ARR = (uint32_t)0x1F3U;
 	TIM5->ARR = (uint32_t)0x4E1U;
+	
+	TIM10->CCR1 = (uint32_t)(TIM10_T_ON * TIM10_FREQ);
 	
 	TIM2->EGR = (uint32_t)TIM_EGR_UG;
 	TIM1->EGR = (uint32_t)TIM_EGR_UG;

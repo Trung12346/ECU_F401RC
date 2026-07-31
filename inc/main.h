@@ -6,9 +6,6 @@
 #define STATIC_INLINE __attribute__((always_inline)) static inline
 #define ALIGN_WORD __attribute__((aligned(4)))
 
-#define APB2_CLOCK 84000000
-#define APB1_CLOCK 42000000
-
 typedef enum
 {
 	SYSTEM_INIT,
