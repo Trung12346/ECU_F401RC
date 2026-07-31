@@ -7,6 +7,8 @@
 ".\objects\spi.o"
 ".\objects\tim.o"
 ".\objects\average.o"
+".\objects\average_16.o"
+".\objects\average_128.o"
 ".\objects\engine_cfg.o"
 ".\objects\phys_const.o"
 ".\objects\sys_cfg.o"

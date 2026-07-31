@@ -61,7 +61,8 @@ void dma2_init(uintptr_t adc_mbuf, uintptr_t tim_mbuf)
 		DMA_SxCR_PSIZE_1 | //32-bit
 		DMA_SxCR_PL      | //very high priority
 		DMA_SxCR_CHSEL_1 |
-		DMA_SxCR_CHSEL_2   //channel6 tim1_ch4
+		DMA_SxCR_CHSEL_2 | //channel6 tim1_ch4
+		DMA_SxCR_TCIE
 	);
 	
 	DMA2_Stream0->NDTR = (uint32_t)0x7U;

@@ -1,4 +1,5 @@
 #include "stm32f401xc.h"
+#include "main.h"
 
 void adc_init(void)
 {
@@ -21,7 +22,7 @@ void adc_init(void)
 	(
 		ADC_CR2_DMA |
 		ADC_CR2_EXTEN_0 |
-		(0xAU << ADC_CR2_EXTSEL_Pos)
+		(0xAU << ADC_CR2_EXTSEL_Pos) //tim5_ch1
 	);
 	
 	ADC1->SMPR2 |= (uint32_t)
@@ -59,7 +60,4 @@ void adc_init(void)
 	ADC1->SQR2 |= (uint32_t)0x7U << ADC_SQR2_SQ7_Pos;
 }
 
-void adc_en(void)
-{
-	ADC1->CR2 |= ADC_CR2_ADON;
-}
+

@@ -69,7 +69,7 @@
 #define _CYLC_IDLE_THRESHLD_RPM 700.0f  //RPM under this mark at idle will set engine in RUNNING mode
 #define _CYLC_IDLE_THRESHLD_TEMP 80.0f  //temperature above this mark will allow cyclic idle
 
-const ENGIN_CFG_t ENGIN_CFG = (ENGIN_CFG_t)
+const EngineConfig_t ENGIN_CFG = (EngineConfig_t)
 {
 	.VE_MAP = _VE_MAP,
 	.MAP_RLKUP = _MAP_RLKUP,

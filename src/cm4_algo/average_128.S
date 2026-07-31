@@ -104,3 +104,4 @@ avg_128:
 	LSR       R0, R3, #7
 	
 	LDM       SP!, {R3-R12}
+	BX        LR

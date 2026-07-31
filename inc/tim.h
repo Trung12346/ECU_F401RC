@@ -3,15 +3,12 @@
 
 #include <stdint.h>
 #include "stm32f401xc.h"
+#include "main.h"
+
+#define TIM10_FREQ 20000.0f
 
 void tim_init(void);
 	
 void tim_en(void);
-	
-static inline void tim10_set_arr(uint32_t arr)
-{
-	TIM10->ARR = arr;
-	TIM10->EGR = (uint32_t)TIM_EGR_UG;
-}
 
 #endif

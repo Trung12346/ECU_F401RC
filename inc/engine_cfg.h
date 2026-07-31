@@ -33,6 +33,8 @@ typedef struct
 	float CYLC_IDLE_CUTOFF_RPM;
 	float CYLC_IDLE_THRESHLD_RPM;
 	float CYLC_IDLE_THRESHLD_TEMP;
-} ENGIN_CFG_t;
+} EngineConfig_t;
+
+extern const EngineConfig_t ENGIN_CFG;
 
 #endif

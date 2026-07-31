@@ -1,12 +1,12 @@
 #include "stm32f401xc.h"
 #include "sys_cfg.h"
 
-//TIM1 captures crank fall edge and request DMA to move TIM2->CNT to memory | 42MHz
+//TIM1 captures crank fall edge and request DMA to move TIM2->CNT to memory | 21MHz
 //TIM2 is the engine logic thread | 42MHz
 //TIM3 generates PWM and turned on/off by TIM2 interrupt request | 1kHz
 //TIM4 generates PWM controlling motor | 500kHz
 //TIM5 requests ADC sequence conversion periodically | 500kHz
-//TIM10 generates PFM controlling solenoid | 500kHz
+//TIM10 generates PFM controlling solenoid | 20kHz
 
 void tim_init(void)
 {
@@ -122,23 +122,24 @@ void tim_init(void)
 	TIM10->CNT = (uint32_t)0x0U;
 	
 	TIM2->PSC = (uint32_t)0x0U; //presc of 1
-	TIM1->PSC = (uint32_t)0x1U;
+	TIM1->PSC = (uint32_t)0x3U;
 	TIM3->PSC = (uint32_t)0xA40FU;
 	TIM4->PSC = (uint32_t)0x53U;
 	TIM5->PSC = (uint32_t)0x53U;
-	TIM10->PSC = (uint32_t)0xA7U;
+	TIM10->PSC = (uint32_t)0xA40FU;
 	
 	TIM2->ARR = (uint32_t)0xFFFFFFFFU;
 	TIM1->ARR = (uint32_t)0xFFFF;
 	TIM3->ARR = (uint32_t)0x4U;
 	TIM4->ARR = (uint32_t)0x1F3U;
-	TIM5->ARR = (uint32_t)0x1F3U;
+	TIM5->ARR = (uint32_t)0x4E1U;
 	
 	TIM2->EGR = (uint32_t)TIM_EGR_UG;
 	TIM1->EGR = (uint32_t)TIM_EGR_UG;
 	TIM3->EGR = (uint32_t)TIM_EGR_UG;
 	TIM4->EGR = (uint32_t)TIM_EGR_UG;
 	TIM5->EGR = (uint32_t)TIM_EGR_UG;
+	TIM10->EGR = (uint32_t)TIM_EGR_UG;
 }
 
 void tim_en(void)

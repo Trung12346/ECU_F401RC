@@ -62,7 +62,6 @@ void pio_init(void)
 		GPIO_OTYPER_OT8 |
 		GPIO_OTYPER_OT12 |
 		GPIO_OTYPER_OT13 |
-		GPIO_OTYPER_OT14 |
 		GPIO_OTYPER_OT15
 	);
 	GPIOA->OTYPER &= ~(uint32_t)GPIO_OTYPER_OT15;
@@ -80,7 +79,6 @@ void pio_init(void)
 	(
 		GPIO_OSPEEDR_OSPEED12 |
 		GPIO_OSPEEDR_OSPEED13 |
-		GPIO_OSPEEDR_OSPEED14 |
 		GPIO_OSPEEDR_OSPEED15
 	);
 	GPIOA->OSPEEDR &= ~(uint32_t)GPIO_OSPEEDR_OSPEED15;
@@ -93,7 +91,7 @@ void pio_init(void)
 		GPIO_PUPDR_PUPD6 |
 		GPIO_PUPDR_PUPD8
 	);
-	GPIOA->PUPDR &= ~(uint32_t)GPIO_PUPDR_PUPDR15;
+	GPIOA->PUPDR &= ~(uint32_t)(GPIO_PUPDR_PUPDR15);
 	GPIOB->PUPDR |= (uint32_t)
 	(
 		GPIO_PUPDR_PUPD3_1 |
@@ -122,7 +120,11 @@ void pio_init(void)
 		GPIO_AFRH_AFSEL14 |
 		GPIO_AFRH_AFSEL15
 	);
-	GPIOA->AFR[1] &= ~(uint32_t)GPIO_AFRH_AFSEL15;
+	GPIOA->AFR[1] &= ~(uint32_t)
+	(
+		GPIO_AFRH_AFSEL15 |
+		GPIO_AFRH_AFSEL11
+	);
 	GPIOB->AFR[0] |= (uint32_t)
 	(
 		0x1U << GPIO_AFRL_AFSEL3_Pos | //tim2_ch2
@@ -138,5 +140,9 @@ void pio_init(void)
 		0x5U << GPIO_AFRH_AFSEL14_Pos | //spi2_miso
 		0x5U << GPIO_AFRH_AFSEL15_Pos   //spi2_mosi
 	);
-	GPIOA->AFR[1] |= (uint32_t)0x1U << GPIO_AFRH_AFSEL15_Pos; //tim2_ch1
+	GPIOA->AFR[1] |= (uint32_t)
+	(
+		0x1U << GPIO_AFRH_AFSEL15_Pos | //tim2_ch1
+		0x1U << GPIO_AFRH_AFSEL11_Pos   //tim1_ch4
+	);
 }
