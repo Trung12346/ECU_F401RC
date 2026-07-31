@@ -9,7 +9,7 @@ typedef struct {
 	float kd;
 	volatile float integral;
 	volatile float previous_error;
-	float setpoint;	
+	float setpoint;
 	float integral_max;
 	float integral_min;
 	float output;

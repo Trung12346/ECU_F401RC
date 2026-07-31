@@ -1,19 +1,17 @@
 #include "interpolation.h"
-#include "main.h"
 #include "stm32f401xc.h"
-#include "tim.h"
 #include "sys_cfg.h"
 
-STATIC_INLINE void fuel_pmp_set(float pid_o)
+void fuel_pmp_set(float pid_o)
 {
 	float T;
 	float arr;
-	float min_tim10_cnter_freq = (float)TIM10_FREQ / TIM10_MAX + 0.005f; //round up to precision of .2f to prevent float precision
+	float min_tim10_cnter_freq = (float)TIM10_FREQ / TIM10_MAX + 0.005f; //round up to precision of .2f to prevent float precision truncation
 	float freq = lerp_1d(
-		0,
-		1,
-		0,
-		20, //frequency clamp theoretically cannot exceed (1 / TIM1_T_ON)
+		0.0f,
+		1.0f,
+		0.0f,
+		20.0f, //frequency clamp theoretically cannot be greater than (1 / TIM1_T_ON) with fuel pump recovery time unaccounted
 		pid_o //0.0f - 1.0f
 	);
 	

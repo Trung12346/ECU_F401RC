@@ -5,9 +5,9 @@
 #include "stm32f401xc.h"
 #include "main.h"
 
-void dma2_init(uintptr_t adc_mbuf, uintptr_t tim_mbuf);
+extern void dma2_init(uintptr_t adc_mbuf, uintptr_t tim_mbuf);
 
-void dma2_en(void);
+extern void dma2_en(void);
 
 STATIC_INLINE void dma2_s0_cis()
 {

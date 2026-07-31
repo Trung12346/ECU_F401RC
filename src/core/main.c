@@ -34,14 +34,14 @@ ProgramDefinedState pds = PROGRAM_DEF_DEFAULT;
 EngineModel_t engine;
 PIDModel_t fp_pid = (PIDModel_t)
 {
-	.kp = 1.5f,
-	.ki = 0.3f,
-	.kd = 0.05f,
+	.kp = 0.002f,
+	.ki = 0.0003f,
+	.kd = 0.0001f,
 	.integral = 0.0f,
 	.previous_error = 0.0f,
 	.setpoint = 300.0f,
-	.integral_max = 2.0f,
-	.integral_min = -2.0f,
+	.integral_max = 100.0f,
+	.integral_min = -100.0f,
 	.output = 0.0f
 };
 bool ft_rdy;
@@ -69,14 +69,13 @@ int main()
 	NVIC_SetPriority(DMA2_Stream4_IRQn, 0);
 	
 	//init software
-	const uint32_t tim1_clk = APB2_CLOCK / (TIM1->PSC + 1);
-	
 	for(uint8_t i = 0; i < 16; i++)
 	{
 		adc_strt();
 		stall(5000);
 	}
 	tps_default = (uint16_t)(avg_16(tps_his) + 15U); //error margin
+	loop_tmstp = TIM1->CNT;
 	
 	//main loop
 	for(;;)
@@ -106,16 +105,17 @@ int main()
 		//engine.OT = avg_16(ot_his);
 
 		//process component parameters
-		dt = (float) (TIM1->CNT - loop_tmstp) / tim1_clk;
+		dt = (float) (TIM1->CNT - loop_tmstp) / TIM1_FREQ;
 		
 		fp_pid.output = pid(
 			&fp_pid,
-			engine.FRP / ENGIN_CFG.FRP_MAX_PRES,
+			engine.FRP,
 			dt
 		);
 		
 		//update hardware
 		fuel_pmp_set(fp_pid.output);
+		//fuel_pmp_set(0.4f);
 		//---------------
 		
 		switch(ss)
@@ -154,14 +154,16 @@ int main()
 			default:
 				break;
 		}
+		
+		if(engine.FRP >= 250.0f)
+		{
+			frp_rdy = true;
+		}
+		
+		loop_tmstp = TIM1->CNT;
 	}
 	
-	if(engine.FRP >= 2.5f)
-	{
-		frp_rdy = true;
-	}
-	
-	loop_tmstp = TIM1->CNT;
+
 }
 
 void DMA2_Stream4_IRQHandler()
@@ -177,8 +179,8 @@ void DMA2_Stream0_IRQHandler()
 {
 	if(DMA2->LISR & DMA_LISR_TCIF0)
 	{
-		map_his[ft_id] = adc_scan[0];
-		frp_his[ft_id] = adc_scan[1];
+		map_his[ft_id] = adc_scan[1];
+		frp_his[ft_id] = adc_scan[0];
 		iat_his[ft_id] = adc_scan[2];
 		tps_his[st_id] = adc_scan[3];
 		et1_his[st_id] = adc_scan[4];

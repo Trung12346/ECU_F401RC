@@ -1,6 +1,7 @@
 .syntax unified
 .thumb
-	
+.cpu cortex-m4
+
 .global avg_128
 .type avg_128, %function
 

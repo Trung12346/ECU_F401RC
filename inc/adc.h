@@ -4,7 +4,7 @@
 #include "main.h"
 #include "stm32f401xc.h"
 
-void adc_init(void);
+extern void adc_init(void);
 
 STATIC_INLINE void adc_en(void)
 {

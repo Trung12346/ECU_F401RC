@@ -3,6 +3,6 @@
 
 #include "main.h"
 
-STATIC_INLINE void fuel_pmp_set(float pid_o);
+extern void fuel_pmp_set(float pid_o);
 	
 #endif
