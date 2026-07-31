@@ -39,6 +39,7 @@ PIDModel_t fp_pid = (PIDModel_t)
 	.kd = 0.05f,
 	.integral = 0.0f,
 	.previous_error = 0.0f,
+	.setpoint = 300.0f,
 	.integral_max = 2.0f,
 	.integral_min = -2.0f,
 	.output = 0.0f
