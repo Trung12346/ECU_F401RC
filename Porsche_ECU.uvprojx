@@ -420,11 +420,6 @@
               <FilePath>.\src\hardware\tim.c</FilePath>
             </File>
             <File>
-              <FileName>average.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\cm4_algo\average.c</FilePath>
-            </File>
-            <File>
               <FileName>average_16.S</FileName>
               <FileType>2</FileType>
               <FilePath>.\src\cm4_algo\average_16.S</FilePath>
@@ -433,16 +428,6 @@
               <FileName>average_128.S</FileName>
               <FileType>2</FileType>
               <FilePath>.\src\cm4_algo\average_128.S</FilePath>
-            </File>
-            <File>
-              <FileName>pid.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\cm4_algo\pid.c</FilePath>
-            </File>
-            <File>
-              <FileName>pid.S</FileName>
-              <FileType>2</FileType>
-              <FilePath>.\src\cm4_algo\pid.S</FilePath>
             </File>
             <File>
               <FileName>linear_interpolation_1d.S</FileName>
@@ -455,24 +440,19 @@
               <FilePath>.\src\cm4_algo\linear_interpolation_2d.S</FilePath>
             </File>
             <File>
-              <FileName>interpolation.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\cm4_algo\interpolation.c</FilePath>
-            </File>
-            <File>
               <FileName>polynominal_quintec.S</FileName>
               <FileType>2</FileType>
               <FilePath>.\src\cm4_algo\polynominal_quintec.S</FilePath>
             </File>
             <File>
-              <FileName>polynomial.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\cm4_algo\polynomial.c</FilePath>
-            </File>
-            <File>
               <FileName>fuel_pump.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\engine\fuel_pump.c</FilePath>
+            </File>
+            <File>
+              <FileName>pid.S</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\src\cm4_algo\pid.S</FilePath>
             </File>
           </Files>
         </Group>

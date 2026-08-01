@@ -89,6 +89,10 @@ void tim_init(void)
 		TIM_CCMR1_OC1PE |
 		TIM_CCMR1_OC2PE
 	);
+	TIM5->CCMR1 |= (uint32_t)
+	(
+		0x7U << TIM_CCMR1_OC1M_Pos
+	);
 	TIM10->CCMR1 |= (uint32_t)
 	(
 		0x6U << TIM_CCMR1_OC1M_Pos |
@@ -137,6 +141,7 @@ void tim_init(void)
 	TIM5->ARR = (uint32_t)0x4E1U;
 	
 	TIM10->CCR1 = (uint32_t)(TIM10_T_ON * TIM10_FREQ);
+	TIM5->CCR1 = (uint32_t)TIM5->ARR >> 1;
 	
 	TIM2->EGR = (uint32_t)TIM_EGR_UG;
 	TIM1->EGR = (uint32_t)TIM_EGR_UG;

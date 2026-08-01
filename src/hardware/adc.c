@@ -13,7 +13,6 @@ void adc_init(void)
 		ADC_CR2_ADON |
 		ADC_CR2_CONT |
 		ADC_CR2_EOCS |
-		ADC_CR2_DDS |
 		ADC_CR2_ALIGN |
 		ADC_CR2_JEXTEN |
 		ADC_CR2_EXTEN
@@ -22,7 +21,8 @@ void adc_init(void)
 	(
 		ADC_CR2_DMA |
 		ADC_CR2_EXTEN_0 |
-		(0xAU << ADC_CR2_EXTSEL_Pos) //tim5_ch1
+		(0xAU << ADC_CR2_EXTSEL_Pos) | //tim5_ch1
+		ADC_CR2_DDS
 	);
 	
 	ADC1->SMPR2 |= (uint32_t)
